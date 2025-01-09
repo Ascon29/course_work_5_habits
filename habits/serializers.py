@@ -5,9 +5,9 @@ from habits.validators import HabitValidator
 
 
 class HabitSerializer(serializers.ModelSerializer):
-    """ Сериализатор модели привычки. """
+    """Сериализатор модели привычки."""
 
     class Meta:
         model = Habit
-        fields = '__all__'
-        validators = [HabitValidator(fields='__all__')]
+        fields = "__all__"
+        validators = [HabitValidator(fields="__all__")]

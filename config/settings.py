@@ -25,6 +25,9 @@ INSTALLED_APPS = [
     "django_filters",
     "habits",
     "users",
+    "corsheaders",
+    "drf_yasg",
+    "django_celery_beat",
 ]
 
 REST_FRAMEWORK = {
@@ -43,6 +46,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -115,3 +119,32 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),  # для удобства
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
+
+TG_URL = "https://api.telegram.org/bot"
+TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
+
+# Настройка для CORS
+
+CORS_ALLOWED_ORIGINS = ["http://127.0.0.1:8000", "http://localhost:8000"]
+
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "http://localhost:8000"]
+
+CORS_ALLOW_ALL_ORIGINS = False
+
+# Настройка для celery
+
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+CELERY_BEAT_SCHEDULE = {
+    "task-name": {
+        "task": "habits.tasks.perform_habits",  # Путь к задаче
+        "schedule": timedelta(minutes=1),  # Расписание выполнения задачи
+    },
+}
+
+# celery -A config worker -l info -P eventlet
+# celery -A config beat -l info

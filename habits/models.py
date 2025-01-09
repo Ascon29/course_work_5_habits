@@ -18,7 +18,12 @@ class Habit(models.Model):
         default=False, verbose_name="признак приятной привычки", help_text="укажите признак приятной привычки"
     )
     associated_habit = models.ForeignKey(
-        "self", on_delete=models.SET_NULL, verbose_name="связанная привычка", blank=True, null=True
+        "self",
+        on_delete=models.SET_NULL,
+        verbose_name="связанная привычка",
+        blank=True,
+        null=True,
+        help_text="укажите связанную привычку",
     )
     reward = models.CharField(
         max_length=255,

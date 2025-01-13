@@ -32,12 +32,12 @@ class Habit(models.Model):
         blank=True,
         null=True,
     )
-    periodicity = models.IntegerField(
+    periodicity = models.PositiveIntegerField(
         default=1,
         verbose_name="периодичность выполнения",
         help_text="введите периодичность выполнения привычки в днях (по умолчанию 1)",
     )
-    time_to_complete = models.IntegerField(
+    time_to_complete = models.PositiveIntegerField(
         default=120, verbose_name="время на выполнение", help_text="введите время на выполнение"
     )
     is_public = models.BooleanField(

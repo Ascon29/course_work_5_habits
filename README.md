@@ -22,9 +22,40 @@
 - Проект покрыли тестами как минимум на 80%.
 
 ---
-#### Установка:
+#### Установка и запуск на локальной машине:
 клонировать репозиторий [Github](https://github.com/Ascon29/course_work_5_habits)
+
+Для запуска сервера нажмите на кнопку `run`
 
 ---
 
-Для запуска сервера нажмите на кнопку `run`
+### Запуск проекта на сервере:
+ 
+1. Клонировать репозиторий:
+```bash
+git clone https://github.com/Ascon29/course_work_5_habits.git
+cd course_work_5_habits
+```
+ 
+2. Собрать и запустить контейнеры:
+```bash
+docker-compose up --build -d
+```
+ 
+3. Применить миграции:
+```bash
+docker-compose exec web python manage.py makemigrations
+docker-compose exec web python manage.py migrate
+```
+ 
+4. Создать суперпользователя:
+```bash
+docker-compose exec web python manage.py csu
+```
+- логин: admin@example.com
+- пароль: 123
+
+5. Сервер доступен по адресу:
+```
+158.160.166.235
+```

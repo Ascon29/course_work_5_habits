@@ -25,6 +25,11 @@ jobs:
     - name: Lint with flake8
       run: flake8 .
 
+    - name: Test with django tests
+      run: python manage.py test
+      env:
+        SECRET_KEY: test_secret_key
+
   docker-build:
     runs-on: ubuntu-latest
     needs: lint

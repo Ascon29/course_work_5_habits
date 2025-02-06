@@ -57,5 +57,5 @@ docker-compose exec web python manage.py csu
 
 5. Сервер доступен по адресу:
 ```
-158.160.166.235
+http://158.160.166.235/
 ```

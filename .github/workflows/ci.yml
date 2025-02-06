@@ -38,4 +38,4 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build Docker image
-      run: docker build -t your-image-name .
+      run: docker build -t course_work_5_habits .
